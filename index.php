@@ -3,7 +3,7 @@
 $world_animals = array(
   'Africa' => array('Poelagus marjorita', 'Otocyon megalotis'),
   'Eurasia' => array('Neofelis nebulosa', 'Cuon alpinus'),
-  'North America' => array('Neovison vison', 'Dasypus'),
+  'North America' => array('Neovison vison', 'Dasypus Dasypus Dasypus'),
   'Australia' => array('Macropus', 'Phascolarctos cinereus', 'Sarcophilus harrisii'),
 );
 
@@ -19,7 +19,8 @@ foreach ($world_animals as $country => $animals)
 {
   foreach ($animals as $animal)
   {
-    if (strpos($animal, ' '))
+    // Находим строки, где только 2 слова
+    if (substr_count($animal, ' ') == 1)
     {
       // Добавляем в массив подходящее название
       $two_words[] = $animal;
@@ -60,11 +61,7 @@ for ($i=0; $i < count($parsed_names); $i++)
 // Выводим полученных животных по регионам животных
 foreach ($imagined_animals as $country => $animals) {
   echo "<h2>$country</h2>";
-  foreach ($animals as $key => $animal) {
-    echo $animal;
-    // Вывод запятых и точки в конце
-    $end_line = ($key != count($animals)-1)? ", <br>" : ".";
-    echo "$end_line";
-  }
+  echo implode(','.PHP_EOL, $animals).'.';
+  
 }
 ?>
